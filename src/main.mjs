@@ -14,6 +14,6 @@ const code = `
 A SPACE B
 `
 
-export const tokenizer = new Tokenizer();
+const tokenizer = new Tokenizer();
 console.log(tokenizer.tokenize(code));
 console.log(preprocess(tokenizer.tokenize(code)));

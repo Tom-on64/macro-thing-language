@@ -67,6 +67,17 @@ export class Tokenizer {
 
             if (float) return Token(FLOAT, parseFloat(num));
             else return Token(INT, parseInt(num));
+        } else if (c === '"') {
+            let string = "" + c;
+
+            while (this.current() !== '"') {
+                console.log(this.current());
+                if (this.current() === '\\') this.consume();
+
+                string += this.consume();
+            }
+
+            return Token(STRING, string);
         } else if (c === '\'') {
             const char = this.consume();
             if (this.consume() !== '\'') error("Expected closing quote after character!");

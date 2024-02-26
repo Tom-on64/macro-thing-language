@@ -1,5 +1,5 @@
-import { error, tokenizer } from "./main.mjs";
-import { EOF, HASH, IDENT, VALUE } from "./tokenizer.mjs";
+import { error } from "./main.mjs";
+import { EOF, HASH, IDENT, Tokenizer, VALUE } from "./tokenizer.mjs";
 
 
 export const preprocess = (t, ctx = {}) => {
@@ -9,6 +9,7 @@ export const preprocess = (t, ctx = {}) => {
 
     let i = 0;
     while (t[i].type !== EOF) {
+        console.log(def);
         if (t[i].type === HASH) {
             const cmd = t[++i];
 
@@ -20,6 +21,7 @@ export const preprocess = (t, ctx = {}) => {
                 const val = t[++i];
                 if (val.type !== VALUE) error("Expected value after define command!");
 
+                const tokenizer = new Tokenizer();
                 def[ident.value] = preprocess(tokenizer.tokenize(val.value), def);
 
                 i++;
