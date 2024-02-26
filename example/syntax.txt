@@ -1,0 +1,4 @@
+# <- preprocessor
+
+#def <ident> <value> // Constatnt
+#def <ident>([args]) <value> // Macro
